@@ -15,5 +15,44 @@ Find Luma in the Logseq theme marketplace within the app.
 Copy `custom.css` into `logseq/custom.css` or paste this line into `logseq/custom.css`
 
 ```css
-@import url('https://cdn.jsdelivr.net/gh/gavinmn/logseq-luma/custom.css');
+@import url('https://cdn.jsdelivr.net/gh/kwand/logseq-luma@main/custom.css');
 ```
+
+## Logseq DB 2.0.2
+
+Version 0.2.1 supports Logseq DB 2.0.2, including its Shui menus, dialogs,
+property views and color tokens in light and dark mode. Navigation controls
+and scrollbars remain visible, and the right sidebar uses the available height.
+
+For DB graphs, paste `custom.css` into the custom CSS editor in Logseq settings.
+Replace the existing contents, including any earlier journal typography overrides.
+The `logseq/custom.css` installation above applies to file graphs. The marketplace
+installs whichever version is published there.
+
+### Journal titles
+
+Journal dates use Newsreader at 26px in both the journal feed and standalone
+journal pages. Hover controls, tags, properties and ordinary page titles keep
+their interface typography. To change the date size, edit
+`--luma-journal-title-size` in `custom.css`.
+
+The Latin Newsreader webfont is embedded in the stylesheet, with its copyright
+notice and SIL Open Font License 1.1. Displaying journal dates does not require
+an external font request. The theme's existing Inter import is retained.
+
+### Compatibility checks
+
+Reviewed against Logseq tag `2.0.2`
+(`533ac4382a7b69baa98de3a973bff90305b212dc`). Browser checks with source-derived
+DOM fixtures and relevant Logseq styles cover:
+
+- Menu colors and header visibility in light/dark modes with logseq, none, blue
+  and tomato accents.
+- Journal feed and standalone title typography, including title editors and
+  their hidden caret mirrors, in light/dark modes with logseq and blue accents.
+- Unchanged typography for hover controls, tags, properties, ordinary pages,
+  body headings and editor popups.
+- Actual Newsreader glyph rendering with external requests disabled.
+
+A live desktop integration check remains necessary for search, slash commands,
+property editing, table scrolling, and opening/resizing the right sidebar.

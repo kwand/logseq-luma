@@ -1,7 +1,7 @@
 {
   "name": "Luma",
   "author": "@gavmn",
-  "version": "0.1",
+  "version": "0.2.1",
   "description": "A minimal and detail oriented light and dark theme for Logseq",
   "logseq": {
     "themes": [
