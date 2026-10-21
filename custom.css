@@ -1205,3 +1205,9 @@ html[data-theme] :is(.ui__dropdown-menu-content,
   line-height: 1.38;
   letter-spacing: -0.02em;
 }
+
+/* Keep journal dates and their hover controls clear of the preceding divider.
+   Pad inside each measured row so virtualized journals keep the same layout. */
+#journals .journal-item > .cp__page-inner-wrap.is-journals {
+  padding-top: 24px;
+}
