@@ -20,7 +20,7 @@ Copy `custom.css` into `logseq/custom.css` or paste this line into `logseq/custo
 
 ## Logseq DB 2.0.2
 
-Version 0.2.1 supports Logseq DB 2.0.2, including its Shui menus, dialogs,
+Version 0.2.2 supports Logseq DB 2.0.2, including its Shui menus, dialogs,
 property views and color tokens in light and dark mode. Navigation controls
 and scrollbars remain visible, and the right sidebar uses the available height.
 
@@ -28,6 +28,10 @@ For DB graphs, paste `custom.css` into the custom CSS editor in Logseq settings.
 Replace the existing contents, including any earlier journal typography overrides.
 The `logseq/custom.css` installation above applies to file graphs. The marketplace
 installs whichever version is published there.
+
+Ordinary block editors inherit the surrounding text size and line height,
+so entering edit mode does not enlarge the text. Heading and journal title
+styles retain their own sizes.
 
 ### Journal titles
 
