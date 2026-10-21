@@ -300,6 +300,14 @@ h3 {
   border-radius: 4px;
 }
 
+/* Tailwind Forms gives textareas a root-relative size. Ordinary block editors
+   must inherit the rendered text size and line height instead. Heading editors
+   and journal title overrides keep their own typography. */
+.ls-block .editor-wrapper > .editor-inner.block-editor > textarea.normal-block {
+  font-size: inherit;
+  line-height: inherit;
+}
+
 /* hide help button */
 /* .cp__sidebar-help-btn {
   display: none;
