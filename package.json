@@ -1,24 +1,24 @@
 {
-  "name": "Luma",
+  "name": "Luma Focus",
   "author": "@gavmn",
-  "version": "0.2.2",
-  "description": "A minimal and detail oriented light and dark theme for Logseq",
+  "version": "0.3.0-focus.1",
+  "description": "A compact light and dark Luma variant for Logseq DB",
   "logseq": {
     "themes": [
       {
-        "name": "Luma Light",
+        "name": "Luma Focus Light",
         "url": "./custom.css",
-        "description": "A minimal and detail oriented light theme for Logseq",
+        "description": "A compact light theme with a journal date gutter",
         "mode": "light"
       },
       {
-        "name": "Luma Dark",
+        "name": "Luma Focus Dark",
         "url": "./custom.css",
-        "description": "A minimal and detail oriented dark theme for Logseq",
+        "description": "A compact dark theme with a journal date gutter",
         "mode": "dark"
       }
     ],
-    "id": "luma",
+    "id": "luma-focus",
     "icon": "./luma-icon.png"
   }
 }
