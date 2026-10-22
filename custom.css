@@ -1,5 +1,5 @@
 /* font import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Sans:wght@400;500&display=swap');
 
 /* Newsreader is embedded so journal dates work offline.
    Original font, copyright and SIL Open Font License 1.1:
@@ -1210,4 +1210,294 @@ html[data-theme] :is(.ui__dropdown-menu-content,
    Pad inside each measured row so virtualized journals keep the same layout. */
 #journals .journal-item > .cp__page-inner-wrap.is-journals {
   padding-top: 24px;
+}
+
+/* Luma Focus — a separate CSS-only design for Logseq DB 2.0.2.
+   Use the native sidebar toggle to switch between the icon rail and full sidebar.
+   Journal dates keep their complete localized text; no generated date content. */
+:root {
+  --ls-main-content-max-width: var(--luma-focus-reading-width);
+  --luma-focus-reading-width: 730px;
+  --luma-focus-date-width: 124px;
+  --luma-focus-journal-space: 30px;
+  --luma-focus-rail-width: 62px;
+}
+
+html[data-theme="light"],
+html[data-theme="light"][data-color],
+html[data-theme="light"][data-color] :is(body, .light-theme, .dark-theme) {
+  --bg1: #fbfcfd;
+  --bg2: #eaf0f3;
+  --bg3: #e6eef2;
+  --bg4: #d9e7ed;
+  --bg-hover: #d9e7ed;
+  --bg-links: #f0f4f6;
+  --header-text: #273741;
+  --text-primary: #273741;
+  --text-secondary: #536b78;
+  --text-tertiary: #637783;
+  --text-quarternary: #637783;
+  --text-faint: #7a8d98;
+  --icon: #637783;
+  --background: 210 33% 99%;
+  --foreground: 203 25% 20%;
+  --card: 210 33% 99%;
+  --card-foreground: 203 25% 20%;
+  --popover: 210 33% 99%;
+  --popover-foreground: 203 25% 20%;
+  --primary: 197 35% 36%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 200 27% 94%;
+  --secondary-foreground: 203 25% 20%;
+  --muted: 200 32% 91%;
+  --muted-foreground: 201 18% 40%;
+  --accent: 198 36% 89%;
+  --accent-foreground: 203 25% 20%;
+  --border: 203 29% 89%;
+  --input: 203 29% 89%;
+  --ring: 197 35% 36%;
+  --ls-border-color: #dbe5eb;
+  --ls-secondary-border-color: #dbe5eb;
+  --ls-guideline-color: #dbe5eb;
+  --ls-scrollbar-foreground-color: #b8c7cf;
+  --ls-scrollbar-thumb-hover-color: #8fa5b1;
+  --ls-link-text-color: #3c6c7d;
+  --ls-link-text-hover-color: #273741;
+  --ls-link-ref-text-color: #3c6c7d;
+  --ls-tag-text-color: #536b78;
+  --ls-block-bullet-color: #879da9;
+  --ls-block-bullet-border-color: #e6eef2;
+  --left-sidebar-bg-color: #eaf0f3;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"][data-color],
+html[data-theme="dark"][data-color] :is(body, .light-theme, .dark-theme) {
+  --bg1: #1e262d;
+  --bg2: #19222a;
+  --bg3: #293c46;
+  --bg4: #2e4652;
+  --bg-hover: #2e4652;
+  --bg-links: #202e37;
+  --header-text: #e5eef3;
+  --text-primary: #e5eef3;
+  --text-secondary: #b1c2ce;
+  --text-tertiary: #a0b3c0;
+  --text-quarternary: #a0b3c0;
+  --text-faint: #879daa;
+  --icon: #a0b3c0;
+  --background: 208 20% 15%;
+  --foreground: 201 37% 93%;
+  --card: 208 20% 15%;
+  --card-foreground: 201 37% 93%;
+  --popover: 208 20% 15%;
+  --popover-foreground: 201 37% 93%;
+  --primary: 196 42% 73%;
+  --primary-foreground: 208 25% 13%;
+  --secondary: 208 25% 13%;
+  --secondary-foreground: 201 37% 93%;
+  --muted: 201 26% 22%;
+  --muted-foreground: 201 20% 69%;
+  --accent: 200 28% 25%;
+  --accent-foreground: 201 37% 93%;
+  --border: 201 21% 27%;
+  --input: 201 21% 27%;
+  --ring: 196 42% 73%;
+  --ls-border-color: #364853;
+  --ls-secondary-border-color: #364853;
+  --ls-guideline-color: #364853;
+  --ls-scrollbar-foreground-color: #536e7d;
+  --ls-scrollbar-thumb-hover-color: #7893a2;
+  --ls-link-text-color: #9cc7d7;
+  --ls-link-text-hover-color: #e5eef3;
+  --ls-link-ref-text-color: #9cc7d7;
+  --ls-tag-text-color: #a0b3c0;
+  --ls-block-bullet-color: #7893a2;
+  --ls-block-bullet-border-color: #293c46;
+  --left-sidebar-bg-color: #19222a;
+}
+
+/* Keep title controls and property popups on the interface font. */
+.cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title {
+  --luma-journal-title-size: 22px;
+}
+.cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title
+  .ls-page-title-container .block-content-wrapper > .block-content
+  > .block-content-inner > .block-head-wrap .block-title-wrap,
+.cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title
+  .ls-page-title-container .editor-wrapper .editor-inner > :is(textarea, .mock-text) {
+  font-family: "Instrument Sans", var(--sans-serif);
+  line-height: 1.38;
+  letter-spacing: -0.025em;
+}
+
+/* Native journal rows are measured by the virtualizer. Keep all spacing inside
+   those rows and preserve any inline min-height used for unloaded journals. */
+#main-content-container { background-color: var(--bg1); }
+#journals .journal-item,
+#journals .journal-item:first-child {
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: var(--luma-focus-journal-space);
+  border-color: var(--ls-border-color);
+}
+#journals .journal-item > .cp__page-inner-wrap.is-journals {
+  padding-top: 28px;
+}
+#journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner {
+  margin-bottom: 0;
+  gap: 18px;
+}
+
+@media (hover: hover) {
+  body { letter-spacing: -0.006em; }
+  #main-content-container {
+    margin: 0;
+    padding-top: 28px;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .cp__sidebar-left-layout.is-open + #main-content-container { margin: 0; }
+  .theme-inner.ls-left-sidebar-open > #app-container > #left-container > .cp__header > .l {
+    width: auto;
+    justify-content: flex-start;
+  }
+  #journals .ls-page-blocks {
+    line-height: 1.65;
+  }
+  #journals .ls-page-blocks .block-children-container {
+    margin-top: 6px;
+  }
+  .left-sidebar-inner .sidebar-navigations a.item {
+    min-height: 36px;
+    border-radius: 6px;
+  }
+  .left-sidebar-inner .sidebar-navigations a.item.active {
+    background: var(--bg4) !important;
+    color: var(--text-primary);
+  }
+  .left-sidebar-inner a.item { opacity: 1; }
+}
+
+/* A CSS-only icon rail in the native closed state. Opening the sidebar restores
+   graph names, favorites, recent pages and the user's saved sidebar width. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  #main-container:not(.is-left-sidebar-open) {
+    padding-left: var(--luma-focus-rail-width);
+  }
+  #left-sidebar:not(.is-open) {
+    top: var(--ls-headbar-height);
+    width: var(--luma-focus-rail-width);
+    height: calc(100% - var(--ls-headbar-height));
+  }
+  #left-sidebar:not(.is-open) > .left-sidebar-inner {
+    width: var(--luma-focus-rail-width) !important;
+    height: 100%;
+    margin-top: 0;
+    padding-top: 0;
+    translate: 0 0;
+    transform: none;
+    overflow: visible;
+  }
+  #left-sidebar:not(.is-open) > .left-sidebar-inner > .wrap {
+    margin-top: 18px;
+    height: auto;
+  }
+  #left-sidebar:not(.is-open) .sidebar-header-container { padding-inline: 10px; }
+  #left-sidebar:not(.is-open) .sidebar-contents-container,
+  #left-sidebar:not(.is-open) .sidebar-content-group-inner > .hd,
+  #left-sidebar:not(.is-open) .sidebar-navigations .keyboard-shortcut,
+  #left-sidebar:not(.is-open) .sidebar-navigations a.item > :not(.ui__icon):not(.flex-1),
+  #left-sidebar:not(.is-open) .cp__graphs-selector > a.item > svg {
+    display: none;
+  }
+  /* Visually hidden labels still name each navigation link for screen readers. */
+  #left-sidebar:not(.is-open) .sidebar-navigations a.item > .flex-1,
+  #left-sidebar:not(.is-open) .cp__graphs-selector > a.item > strong {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  #left-sidebar:not(.is-open) .sidebar-navigations { gap: 6px; margin-top: 20px; }
+  #left-sidebar:not(.is-open) .sidebar-navigations a.item {
+    justify-content: center;
+    height: 38px;
+    width: 40px;
+    padding: 0;
+  }
+  #left-sidebar:not(.is-open) .sidebar-navigations a.item > .ui__icon {
+    margin: 0;
+    width: 18px;
+    opacity: 1;
+  }
+  #left-sidebar:not(.is-open) .cp__graphs-selector > a.item {
+    justify-content: center;
+    padding: 0;
+  }
+  #left-sidebar:not(.is-open) .cp__graphs-selector > a.item > .thumb { margin: 0; }
+}
+
+/* The date occupies the first column; properties, tabs and blocks keep their
+   native order in column two. Standalone pages retain a full-width title. */
+@media (min-width: 900px) {
+  #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner {
+    grid-template-columns: var(--luma-focus-date-width) minmax(0, 1fr);
+    column-gap: 24px;
+  }
+  #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > * {
+    grid-column: 2;
+    min-width: 0;
+  }
+  #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > .flex:first-child {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+  }
+  #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title {
+    --luma-journal-title-size: 18px;
+  }
+  #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > .ls-page-blocks {
+    margin-top: 0;
+    margin-left: 0 !important;
+  }
+  #journals .page-inner > .flex > .ls-page-title .ls-page-title-container .block-row {
+    flex-wrap: wrap;
+  }
+  #journals .page-inner > .flex > .ls-page-title .ls-block-right {
+    flex-basis: 100%;
+    margin-top: 5px;
+  }
+  #journals .page-inner > .flex > .ls-page-title .block-tags .tag {
+    font-size: 11px !important;
+    font-weight: 400;
+  }
+  #journals .page-inner > .flex > .ls-page-title .block-tags { margin-top: 0; }
+}
+
+/* A narrow main pane (including an open right sidebar) needs a stacked date.
+   Scope the container to the main pane, not to each virtualized journal row. */
+@supports (container-type: inline-size) {
+  .cp__sidebar-main-content { container-type: inline-size; container-name: luma-focus-main; }
+  @container luma-focus-main (max-width: 600px) {
+    #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+    #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > * {
+      grid-column: 1;
+    }
+    #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title {
+      --luma-journal-title-size: 22px;
+    }
+    #journals .page-inner > .flex > .ls-page-title .ls-block-right {
+      flex-basis: auto;
+      margin-top: 0;
+    }
+  }
 }
