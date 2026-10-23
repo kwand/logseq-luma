@@ -1501,3 +1501,68 @@ html[data-theme="dark"][data-color] :is(body, .light-theme, .dark-theme) {
     }
   }
 }
+
+/* Focus journal headers: keep the real date on one line, with actions below. */
+:root { --luma-focus-date-width: 192px; }
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-container .block-row {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-container .block-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  min-width: 0;
+  flex: none;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-container .block-content-wrapper > .block-content {
+  order: 0;
+  width: 100%;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-container
+  .block-content-wrapper > .block-content > .block-content-inner > .block-head-wrap .block-title-wrap {
+  white-space: nowrap;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-actions {
+  position: static;
+  order: 1;
+  margin-top: 6px;
+  min-height: 24px;
+  width: max-content;
+  max-width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .block-content-wrapper:hover > .ls-page-title-actions,
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .block-content-wrapper:focus-within > .ls-page-title-actions,
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-actions:has(button[data-popup-active]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-actions > .flex {
+  flex-wrap: wrap;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-block-right {
+  flex: none;
+  flex-basis: auto;
+  align-self: flex-start;
+  margin: 4px 0 0;
+  width: 100%;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .block-tags { margin-top: 0; }
+@supports (container-type: inline-size) {
+  @container luma-focus-main (max-width: 680px) {
+    #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+    #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > * {
+      grid-column: 1;
+    }
+    #journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title {
+      --luma-journal-title-size: 22px;
+    }
+  }
+}
