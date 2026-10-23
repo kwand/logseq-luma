@@ -1502,14 +1502,17 @@ html[data-theme="dark"][data-color] :is(body, .light-theme, .dark-theme) {
   }
 }
 
-/* Focus journal headers: keep the real date on one line, with actions below. */
+/* Focus journal headers: keep the real date on one line, with actions above. */
 :root { --luma-focus-date-width: 192px; }
+/* Reserve the toolbar above each date, clear of the preceding divider. */
+#journals .journal-item > .cp__page-inner-wrap.is-journals { padding-top: 40px; }
 #main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-container .block-row {
   flex-direction: column;
   align-items: flex-start;
   gap: 0;
 }
 #main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-container .block-content-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -1526,14 +1529,25 @@ html[data-theme="dark"][data-color] :is(body, .light-theme, .dark-theme) {
   white-space: nowrap;
 }
 #main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-actions {
-  position: static;
-  order: 1;
-  margin-top: 6px;
+  position: absolute;
+  top: auto;
+  bottom: calc(100% + 6px);
+  left: 0;
+  margin: 0;
   min-height: 24px;
   width: max-content;
-  max-width: 100%;
+  max-width: none;
   opacity: 0;
   pointer-events: none;
+}
+/* Keep the buttons reachable while the pointer crosses the visual gap. */
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-actions::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 6px;
 }
 #main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .block-content-wrapper:hover > .ls-page-title-actions,
 #main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .block-content-wrapper:focus-within > .ls-page-title-actions,
@@ -1542,7 +1556,7 @@ html[data-theme="dark"][data-color] :is(body, .light-theme, .dark-theme) {
   pointer-events: auto;
 }
 #main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-page-title-actions > .flex {
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 #main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title .ls-block-right {
   flex: none;
