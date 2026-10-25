@@ -1,24 +1,24 @@
 {
-  "name": "Luma",
+  "name": "Luma Refined",
   "author": "@gavmn",
-  "version": "0.2.2",
-  "description": "A minimal and detail oriented light and dark theme for Logseq",
+  "version": "0.3.0-refined.1",
+  "description": "A calm, readable light and dark Luma variant for Logseq DB",
   "logseq": {
     "themes": [
       {
-        "name": "Luma Light",
+        "name": "Luma Refined Light",
         "url": "./custom.css",
-        "description": "A minimal and detail oriented light theme for Logseq",
+        "description": "A calm light theme with Newsreader titles and quiet page details",
         "mode": "light"
       },
       {
-        "name": "Luma Dark",
+        "name": "Luma Refined Dark",
         "url": "./custom.css",
-        "description": "A minimal and detail oriented dark theme for Logseq",
+        "description": "A calm dark theme with Newsreader titles and quiet page details",
         "mode": "dark"
       }
     ],
-    "id": "luma",
+    "id": "luma-refined",
     "icon": "./luma-icon.png"
   }
 }
