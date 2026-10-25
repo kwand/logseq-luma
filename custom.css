@@ -1211,3 +1211,528 @@ html[data-theme] :is(.ui__dropdown-menu-content,
 #journals .journal-item > .cp__page-inner-wrap.is-journals {
   padding-top: 24px;
 }
+
+/* Luma Refined — Calm, for Logseq DB 2.0.2.
+   Native navigation, resizing, virtualization and graph rendering stay native. */
+:root {
+  --luma-refined-reading-width: 680px;
+  --luma-refined-body-size: 14px;
+  --luma-refined-body-line-height: 1.76;
+  --luma-refined-journal-space: 40px;
+  --ls-main-content-max-width: calc(var(--luma-refined-reading-width) + 16px);
+  --ls-left-sidebar-width: 184px;
+  --ls-headbar-height: 48px;
+  --ls-page-text-size: var(--luma-refined-body-size);
+}
+
+html[data-theme="light"],
+html[data-theme="light"][data-color],
+html[data-theme="light"][data-color] :is(body, .light-theme, .dark-theme) {
+  --bg1: #ffffff;
+  --bg2: #f3f5f8;
+  --bg3: #e4ebf4;
+  --bg4: #dce4ef;
+  --bg-hover: #eef2f7;
+  --bg-links: #f7f9fc;
+  --header-text: #273347;
+  --text-primary: #273347;
+  --text-secondary: #617087;
+  --text-tertiary: #617087;
+  --text-quarternary: #617087;
+  --text-faint: #74839a;
+  --icon: #74839a;
+  --luma-refined-accent: #526f98;
+  --luma-refined-selected: #e4ebf4;
+  --luma-refined-soft: #f7f9fc;
+  --background: 0 0% 100%;
+  --foreground: 218 29% 22%;
+  --card: 0 0% 100%;
+  --card-foreground: 218 29% 22%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 218 29% 22%;
+  --primary: 215 30% 46%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 216 26% 96%;
+  --secondary-foreground: 218 29% 22%;
+  --muted: 214 42% 93%;
+  --muted-foreground: 216 16% 45%;
+  --accent: 214 42% 93%;
+  --accent-foreground: 218 29% 22%;
+  --border: 214 30% 91%;
+  --input: 214 30% 91%;
+  --ring: 215 30% 46%;
+  --ls-border-color: #e1e7ef;
+  --ls-border-color-dark: #e1e7ef;
+  --ls-secondary-border-color: #e1e7ef;
+  --ls-guideline-color: #e1e7ef;
+  --ls-scrollbar-foreground-color: #c7d0df;
+  --ls-scrollbar-thumb-hover-color: #a6b4c9;
+  --ls-block-bullet-color: #98a5b8;
+  --ls-block-bullet-border-color: #e4ebf4;
+  --left-sidebar-bg-color: #f2f5f9;
+}
+
+html[data-theme="dark"],
+html[data-theme="dark"][data-color],
+html[data-theme="dark"][data-color] :is(body, .light-theme, .dark-theme) {
+  --bg1: #222833;
+  --bg2: #171c25;
+  --bg3: #33435a;
+  --bg4: #3b4555;
+  --bg-hover: #2c3746;
+  --bg-links: #252e3b;
+  --header-text: #e6edf7;
+  --text-primary: #e6edf7;
+  --text-secondary: #a7b4c7;
+  --text-tertiary: #a7b4c7;
+  --text-quarternary: #a7b4c7;
+  --text-faint: #98a9c0;
+  --icon: #98a9c0;
+  --luma-refined-accent: #b5ceee;
+  --luma-refined-selected: #33435a;
+  --luma-refined-soft: #252e3b;
+  --background: 219 20% 17%;
+  --foreground: 215 52% 94%;
+  --card: 219 20% 17%;
+  --card-foreground: 215 52% 94%;
+  --popover: 219 20% 17%;
+  --popover-foreground: 215 52% 94%;
+  --primary: 214 63% 82%;
+  --primary-foreground: 219 23% 12%;
+  --secondary: 219 23% 12%;
+  --secondary-foreground: 215 52% 94%;
+  --muted: 215 28% 28%;
+  --muted-foreground: 216 22% 72%;
+  --accent: 215 28% 28%;
+  --accent-foreground: 215 52% 94%;
+  --border: 217 18% 28%;
+  --input: 217 18% 28%;
+  --ring: 214 63% 82%;
+  --ls-border-color: #3b4555;
+  --ls-border-color-dark: #3b4555;
+  --ls-secondary-border-color: #3b4555;
+  --ls-guideline-color: #3b4555;
+  --ls-scrollbar-foreground-color: #526179;
+  --ls-scrollbar-thumb-hover-color: #7587a1;
+  --ls-block-bullet-color: #93a2b8;
+  --ls-block-bullet-border-color: #33435a;
+  --left-sidebar-bg-color: #1c222d;
+}
+
+html[data-theme],
+html[data-theme][data-color],
+html[data-theme][data-color] :is(body, .light-theme, .dark-theme) {
+  --ls-link-text-color: var(--luma-refined-accent);
+  --ls-link-ref-text-color: var(--luma-refined-accent);
+  --ls-link-text-hover-color: var(--text-primary);
+  --ls-link-ref-text-hover-color: var(--text-primary);
+  --ls-tag-text-color: var(--luma-refined-accent);
+  --ls-page-checkbox-color: var(--bg1);
+  --ls-page-checkbox-border-color: var(--ls-border-color);
+  --ls-page-properties-background-color: transparent;
+  --ls-page-blockquote-bg-color: var(--luma-refined-soft);
+  --ls-page-blockquote-color: var(--text-secondary);
+  --ls-page-blockquote-border-color: var(--ls-border-color);
+}
+
+body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
+#app-container, .cp__sidebar-main-layout { background: var(--bg2); }
+.left-sidebar-inner.as-container { background: var(--left-sidebar-bg-color); }
+.left-sidebar-inner { margin-top: 0; }
+.left-sidebar-inner .dropdown-wrapper { min-width: 0; max-width: 100%; }
+.left-sidebar-inner .sidebar-navigations a {
+  min-height: 35px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  opacity: 1;
+  font-size: 13px;
+}
+.left-sidebar-inner .sidebar-navigations a.active,
+.left-sidebar-inner .journals-nav > a.active {
+  background: var(--luma-refined-selected) !important;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.left-sidebar-inner .sidebar-navigations a:hover { background: var(--bg-hover); }
+.left-sidebar-inner .sidebar-content-group .hd { color: var(--text-secondary); font-size: 12px; }
+.left-sidebar-inner .recent::before, .recent > div::before { display: none; }
+.left-sidebar-inner .recent-item > a,
+.left-sidebar-inner .favorite-item > a { color: var(--text-secondary) !important; font-size: 12px; }
+.left-sidebar-inner .nav-content-item .bd ul a .page-icon { display: flex; }
+
+/* Retain native sidebar transforms and inline user-resized widths. */
+@media (min-width: 640px) and (hover: hover) {
+  #main-content-container {
+    margin: 0 7px 7px;
+    padding: 36px 28px 40px;
+    border-radius: 7px;
+    border: 1px solid var(--ls-border-color);
+    box-shadow: none;
+    background: var(--bg1);
+  }
+  #main-container.is-left-sidebar-open #main-content-container,
+  .cp__sidebar-left-layout.is-open + #main-content-container { margin-left: 0; }
+  .theme-inner.ls-left-sidebar-open > #app-container > #left-container > .cp__header > .l {
+    width: auto;
+    justify-content: flex-start;
+  }
+}
+
+/* Full-width database views, PDFs and graphs keep Logseq's own width choice. */
+.cp__sidebar-main-content[data-is-full-width="false"] {
+  max-width: var(--ls-main-content-max-width);
+}
+.ls-wide-mode .cp__sidebar-main-content[data-is-full-width="false"] {
+  max-width: var(--ls-main-content-max-width-wide);
+}
+
+/* Put the space inside each virtualized journal row, preserving cached inline
+   min-heights. Titles remain above their notes, in one full-width column. */
+#journals .journal-item,
+#journals .journal-item:first-child {
+  min-height: 0;
+  padding-top: 0;
+  padding-bottom: var(--luma-refined-journal-space);
+  border-color: var(--ls-border-color);
+}
+#journals .journal-item > .cp__page-inner-wrap.is-journals { padding-top: 40px; }
+#journals .journal-item > .cp__page-inner-wrap.is-journals > .page-inner {
+  margin-bottom: 0;
+  gap: 24px;
+}
+
+@media (max-width: 639px) {
+  #main-content-container { padding-top: 24px; }
+  .cp__sidebar-main-content .page { padding-left: 24px; padding-right: 24px; }
+  #journals .journal-item > .cp__page-inner-wrap.is-journals { padding-top: 36px; }
+}
+@media (pointer: coarse) {
+  .left-sidebar-inner .sidebar-navigations a { min-height: 44px; }
+}
+
+/* Luma Refined: Calm titles, properties, references and right sidebar.
+   Source: page.cljs312/505/517, block.cljs3670-3767, editor.cljs579/792.
+   The shared title container retains interface typography. */
+:root {
+  --luma-refined-note-title-size: 34px;
+  --luma-refined-journal-title-size: 26px;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title {
+  --luma-refined-title-size: var(--luma-refined-note-title-size);
+  --luma-refined-title-leading: 1.2;
+}
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .flex > .ls-page-title {
+  --luma-refined-title-size: var(--luma-refined-journal-title-size);
+  --luma-refined-title-leading: 1.38;
+}
+/* Standalone regular/journal pages reserve room for the above-title toolbar.
+   Feed rows receive their 40px padding from refined-shell.css. */
+#main-content-container > .cp__sidebar-main-content > .cp__page-inner-wrap:not(.is-node-page):has(> .page-inner > .flex > .ls-page-title) {
+  padding-top: 32px;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper > .block-content > .block-content-inner > .block-head-wrap {
+  font-size: var(--luma-refined-title-size);
+  line-height: var(--luma-refined-title-leading);
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper > .block-content > .block-content-inner > .block-head-wrap .block-title-wrap,
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .editor-wrapper > .editor-inner > :is(textarea, .mock-text) {
+  font-family: "Luma Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: var(--luma-refined-title-size) !important;
+  font-weight: 400 !important;
+  line-height: var(--luma-refined-title-leading);
+  letter-spacing: -0.02em;
+  font-optical-sizing: auto;
+  overflow-wrap: anywhere;
+  transform: none;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .block-main-container.is-page-title-row > .block-control-wrap {
+  --ls-page-title-size: var(--luma-refined-title-size);
+  --ls-page-title-line-height: var(--luma-refined-title-leading);
+}
+/* Native button sizes and fonts; deterministic anchor and transparent hover bridge. */
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper { position: relative; min-width: 0; }
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper > .ls-page-title-actions {
+  position: absolute;
+  top: auto;
+  bottom: calc(100% + 6px);
+  left: 0;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  min-height: 24px;
+  pointer-events: none;
+  opacity: 0;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper > .ls-page-title-actions > .flex { flex-wrap: nowrap; }
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper > .ls-page-title-actions::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 6px;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper:hover > .ls-page-title-actions,
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper:focus-within > .ls-page-title-actions,
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-page-title-container > .block-content-or-editor-inner > .block-row > .block-content-wrapper > .ls-page-title-actions:has(button[data-popup-active]) {
+  pointer-events: auto;
+  opacity: 1;
+}
+/* Page properties carry BOTH classes on the same element (property.cljs1043). */
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-properties-area.ls-page-properties {
+  font-family: var(--sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  background: transparent;
+  padding-block: 10px;
+  border-block: 1px solid var(--ls-border-color);
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-properties-area.ls-page-properties .properties-panel {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-properties-area.ls-page-properties .property-key,
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-properties-area.ls-page-properties .property-key-panel {
+  font-size: inherit;
+  color: var(--text-secondary);
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .flex > .ls-page-title .ls-properties-area.ls-page-properties .property-key-panel .property-k { color: inherit; }
+/* Keep the native two-column property layout and 28px editing targets.
+   Do not change checkbox/status colors, typed editors, or menu portals. */
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks {
+  font-family: var(--sans-serif);
+  font-size: var(--luma-refined-body-size, 14px);
+  line-height: var(--luma-refined-body-line-height, 1.76);
+}
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-wrapper > .editor-inner.block-editor > textarea.normal-block:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) {
+  font-size: inherit;
+  line-height: inherit;
+}
+/* Heading levels share one metric between rendered text, textarea and caret mirror.
+   Multiline heading editors keep paragraph sizing after the first line. */
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks h1:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.h1:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.h1) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) { --luma-refined-heading-size: 24px; }
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks h2:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.h2:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.h2) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) { --luma-refined-heading-size: 19px; }
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks h3:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.h3:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.h3) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) { --luma-refined-heading-size: 16px; }
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks h4:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.h4:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.h4) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) { --luma-refined-heading-size: 14px; }
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks h5:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.h5:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.h5) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) { --luma-refined-heading-size: 13px; }
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks h6:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.h6:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.h6) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) { --luma-refined-heading-size: 12px; }
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks :is(h1,h2,h3,h4,h5,h6):not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.uniline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.uniline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) {
+  font-family: var(--sans-serif);
+  font-size: var(--luma-refined-heading-size) !important;
+  font-weight: 600 !important;
+  line-height: 1.4;
+  margin-block: 0;
+  padding-block: 0;
+  min-height: max(1.4em, 24px) !important;
+  border-bottom: 0;
+  transform: none;
+}
+/* Native h5 fixes its textarea to 24px. On content-sizing browsers allow long
+   headings to grow; older browsers keep Logseq's JavaScript sizing fallback. */
+@supports (field-sizing: content) {
+  :is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.uniline-block.h5:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) {
+    height: auto !important;
+  }
+}
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)),
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) {
+  font-family: var(--sans-serif);
+  font-size: var(--luma-refined-body-size, 14px);
+  line-height: var(--luma-refined-body-line-height, 1.76);
+  transform: none;
+}
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *))::first-line,
+:is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *))::first-line {
+  font-family: var(--sans-serif);
+  font-size: var(--luma-refined-heading-size) !important;
+  font-weight: 600 !important;
+  line-height: 1.4;
+  transform: none;
+}
+/* Backlinks are native views inside these reference-only roots (reference.cljs61/70).
+   Keep filters, collapsers, counts and view selectors intact. */
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .flex :is(.references, .unlinked-references) {
+  padding-top: 16px;
+  border-top: 1px solid var(--ls-border-color);
+  font-family: var(--sans-serif);
+  font-size: 13px;
+  line-height: 1.65;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .flex :is(.references, .unlinked-references) .ls-view-head {
+  color: var(--text-secondary);
+  font-family: var(--sans-serif);
+  font-size: 13px;
+}
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .flex :is(.references, .unlinked-references) .ls-view-body { margin-top: 10px; }
+/* The native resizer, scrolling, collapsed state and panel actions remain intact. */
+#right-sidebar .cp__right-sidebar-inner { background: var(--bg2); }
+#right-sidebar .sidebar-item {
+  background: var(--bg1);
+  border: 1px solid var(--ls-border-color);
+  border-radius: 8px;
+  box-shadow: none;
+  padding-top: 0;
+}
+#right-sidebar .sidebar-item-header {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--ls-border-color);
+  font-family: var(--sans-serif);
+}
+#right-sidebar .sidebar-item-header .page-title { font-family: var(--sans-serif); font-size: 13px; }
+
+/* Luma Refined: native Pages library.
+ * Logseq DB 2.0.2 uses div-based .ls-table rows, not HTML table cells.
+ * Preserve the native 33px row/item/header geometry: Virtuoso supplies a fixed
+ * item height in views.cljs. Adding the mockup's 15px vertical row padding
+ * would clip cells and desynchronize virtual scrolling.
+ */
+.ls-all-pages {
+  max-width: 1040px;
+  padding-top: 18px;
+  padding-bottom: 28px;
+}
+
+.ls-all-pages .ls-view-head {
+  margin-bottom: 18px;
+}
+
+.ls-all-pages .ls-table {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.ls-all-pages .ls-table-header-cell {
+  color: var(--ls-secondary-text-color);
+  border-right-color: transparent;
+  background-color: var(--ls-primary-background-color);
+}
+
+.ls-all-pages .ls-table-header-cell > .ui__button {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ls-secondary-text-color);
+}
+
+.ls-all-pages .ls-table-row {
+  border-bottom-color: var(--ls-border-color);
+}
+
+.ls-all-pages .ls-table-cell > div {
+  border-right-color: transparent;
+}
+
+.ls-all-pages .ls-table-cell a.page-ref {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ls-link-text-color);
+}
+
+.ls-all-pages .ls-table-row:not(.selected):not([data-state="selected"]):not(:has(.ui__checkbox[data-checked])) {
+  background-color: var(--ls-primary-background-color);
+}
+
+.ls-all-pages .ls-table-row:not(.selected):not([data-state="selected"]):not(:has(.ui__checkbox[data-checked])):hover {
+  background-color: var(--ls-secondary-background-color);
+}
+
+/* Luma Refined: the native Flashcards dialog, not a replacement full-page view.
+ * fsrs.cljs renders the source breadcrumb, question block, optional children,
+ * clozes, answer/rating buttons, due dates and shortcuts. Keep all native
+ * button rules and the dialog/card scrolling geometry.
+ */
+#cards-modal {
+  width: 100%;
+  max-width: var(--luma-refined-reading-width, 680px);
+  min-width: 0;
+  margin-inline: auto;
+}
+
+.ui__dialog-content[label="flashcards__cp"] {
+  border-color: var(--ls-border-color);
+  border-radius: 10px;
+  background-color: var(--ls-primary-background-color);
+}
+
+#cards-modal .ls-card-scroll > .blocks-container {
+  width: 100%;
+  max-width: var(--luma-refined-reading-width, 680px);
+  margin-inline: auto;
+  padding: clamp(24px, 5vh, 48px) 12px 24px;
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: var(--luma-refined-body-size, 14px);
+  line-height: 1.75;
+}
+
+/* Only the card's own title/editor leaves use the display face. This direct
+ * root-block chain prevents child answers and nested card content inheriting
+ * the question font. The hidden editor measurement mirror must match too.
+ */
+#cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block
+  > .block-main-container > .block-content-or-editor-wrap > .block-content-or-editor-inner
+  > .block-row > .block-content-wrapper > .block-content > .block-content-inner
+  > .block-head-wrap .block-title-wrap,
+#cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block
+  > .block-main-container > .block-content-or-editor-wrap > .block-content-or-editor-inner
+  > .block-row > .editor-wrapper > .editor-inner > :is(textarea, .mock-text) {
+  font-family: "Luma Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+/* Graph nodes, edges and labels are rendered by the native canvas renderer.
+ * CSS can refine the actual controls/panels without changing graph behavior.
+ */
+#global-graph .graph-settings-panel {
+  border-color: var(--ls-border-color);
+  border-radius: 8px;
+  background: var(--ls-primary-background-color);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ls-primary-text-color) 12%, transparent);
+  backdrop-filter: none;
+}
+
+#global-graph .graph-settings-group {
+  border-color: var(--ls-border-color);
+  border-radius: 6px;
+  background: var(--ls-secondary-background-color);
+}
+
+#global-graph .graph-settings-title {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#global-graph .graph-settings-group-title {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#global-graph .graph-toolbar-button {
+  border-color: var(--ls-border-color);
+  background: var(--ls-primary-background-color);
+  color: var(--ls-secondary-text-color);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--ls-primary-text-color) 8%, transparent);
+}
