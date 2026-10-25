@@ -1,62 +1,83 @@
-# Logseq Luma Theme
-A minimal and detail oriented light and dark theme for Logseq. *Presented as is — there may be some inconsistencies that I will be slowly fixing as I have time.*
+# Luma Refined for Logseq DB
 
-<img width="1796" alt="preview-light" src="https://user-images.githubusercontent.com/59900904/181398409-7c98856d-fb3b-4ca5-9fef-8d975056d86c.png">
-<img width="1840" alt="preview-dark" src="https://user-images.githubusercontent.com/59900904/181398414-62f8b5d0-87e6-445b-8ae8-e4dc5761cfee.png">
+Luma Refined implements the Calm design on the `refined` branch. It builds on
+Luma's Logseq DB 2.0.2 compatibility, editor text-size fix and journal spacing.
+The original Luma remains on `main`; the earlier Focus experiment remains on
+`focus`.
+
+- A cool neutral palette, white reading surface in light mode and a blue-gray
+  surface in dark mode.
+- A comfortable 680px reading width, 14px body text and open line spacing.
+- Embedded Newsreader titles: 34px for notes and 26px for journal dates, both in
+  the feed and on standalone journal pages. Long titles wrap when necessary.
+- Quiet properties, simple linked-reference dividers and a lightly tinted
+  right sidebar.
+- A familiar full left sidebar with a 184px default width. Logseq's toggle,
+  saved sidebar width and resizing remain available.
+- Refined Pages, flashcard and graph controls using their existing native UI.
+
+Title typography applies only to title text, its editor and its caret mirror.
+Add icon, Set property, tags, menus and other interface controls retain Inter.
+The title actions appear above the title, with space reserved inside each
+journal row. Ordinary block editors use the same size and line height as their
+rendered text.
 
 ## Installation
 
-**Marketplace**
-
-Find Luma in the Logseq theme marketplace within the app.
-
-**Manual installation**
-
-Copy `custom.css` into `logseq/custom.css` or paste this line into `logseq/custom.css`
+This branch is a separate variant, not a marketplace release. For Logseq DB,
+replace the contents of the custom CSS editor in Settings with:
 
 ```css
-@import url('https://cdn.jsdelivr.net/gh/kwand/logseq-luma@main/custom.css');
+@import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@refined/custom.css");
 ```
 
-## Logseq DB 2.0.2
+For file graphs, put the same line in `logseq/custom.css`. You can also copy the
+entire stylesheet. Remove previous theme imports and temporary CSS overrides
+when switching, so they do not override Refined.
 
-Version 0.2.2 supports Logseq DB 2.0.2, including its Shui menus, dialogs,
-property views and color tokens in light and dark mode. Navigation controls
-and scrollbars remain visible, and the right sidebar uses the available height.
+The CDN caches branch URLs. To request a particular update, append a new version
+query to the URL, for example `custom.css?v=0.3.0-refined.1`, or use the commit
+SHA in place of `refined` for a fixed version.
 
-For DB graphs, paste `custom.css` into the custom CSS editor in Logseq settings.
-Replace the existing contents, including any earlier journal typography overrides.
-The `logseq/custom.css` installation above applies to file graphs. The marketplace
-installs whichever version is published there.
+## Native Logseq behavior
 
-Ordinary block editors inherit the surrounding text size and line height,
-so entering edit mode does not enlarge the text. Heading and journal title
-styles retain their own sizes.
+The design is CSS only and does not change graph data or add application
+features. Native structure determines a few details:
 
-### Journal titles
+- The DB Pages list is a virtualized Shui table. Its 33px row height is retained
+  to preserve scrolling, selection and column behavior; typography, rules and
+  surrounding spacing carry the Calm style.
+- Flashcards open in Logseq's review dialog. Questions use Newsreader; answers
+  and review buttons retain their normal interface typography and behavior.
+- Graph rendering and node positions remain native. The theme styles the graph
+  background and existing controls, rather than replacing its canvas renderer.
+- Journal rows retain inline heights cached by Logseq's virtualizer. Empty days
+  do not acquire a new fixed minimum from the theme.
 
-Journal dates use Newsreader at 26px in both the journal feed and standalone
-journal pages. Hover controls, tags, properties and ordinary page titles keep
-their interface typography. To change the date size, edit
-`--luma-journal-title-size` in `custom.css`.
+## Customization
 
-The Latin Newsreader webfont is embedded in the stylesheet, with its copyright
-notice and SIL Open Font License 1.1. Displaying journal dates does not require
-an external font request. The theme's existing Inter import is retained.
+The Refined section near the end of `custom.css` exposes:
 
-### Compatibility checks
+```css
+--luma-refined-reading-width: 680px;
+--luma-refined-body-size: 14px;
+--luma-refined-body-line-height: 1.76;
+--luma-refined-journal-space: 40px;
+```
+
+Newsreader's Latin webfont is embedded, with its copyright notice and SIL Open
+Font License 1.1 in the stylesheet. It works without a font download. Inter uses
+the existing import and falls back to the system sans-serif font.
+
+## Compatibility checks
 
 Reviewed against Logseq tag `2.0.2`
-(`533ac4382a7b69baa98de3a973bff90305b212dc`). Browser checks with source-derived
-DOM fixtures and relevant Logseq styles cover:
+(`533ac4382a7b69baa98de3a973bff90305b212dc`). Browser checks use source-derived
+DOM and the installed application's compiled CSS in light and dark mode, on
+desktop, narrow panes and touch-sized screens. They cover title/editor/caret
+metrics, above-title actions, journal spacing, cached virtual row heights,
+sidebar sizing, Pages row geometry, properties and flashcards.
 
-- Menu colors and header visibility in light/dark modes with logseq, none, blue
-  and tomato accents.
-- Journal feed and standalone title typography, including title editors and
-  their hidden caret mirrors, in light/dark modes with logseq and blue accents.
-- Unchanged typography for hover controls, tags, properties, ordinary pages,
-  body headings and editor popups.
-- Actual Newsreader glyph rendering with external requests disabled.
-
-A live desktop integration check remains necessary for search, slash commands,
-property editing, table scrolling, and opening/resizing the right sidebar.
+These isolated checks do not run Logseq's application logic. Search, property
+editing, review scheduling and graph interaction still use Logseq's native
+implementation.
