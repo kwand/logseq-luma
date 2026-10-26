@@ -7,11 +7,14 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
 
 - A cool neutral palette, white reading surface in light mode and a blue-gray
   surface in dark mode.
-- A comfortable 680px reading width, 14px body text and open line spacing.
+- A comfortable 680px reading width, 14px body text and the original 1.5 line spacing.
 - Embedded Newsreader titles: 34px for notes and 26px for journal dates, both in
   the feed and on standalone journal pages. Long titles wrap when necessary.
 - Quiet properties, simple linked-reference dividers and a lightly tinted
   right sidebar.
+- Compact hover previews with readable text and scrollable wide code blocks.
+- Linked references retain their native section chevron and keep text and
+  controls inside the section's clipping boundary.
 - A familiar full left sidebar with a 184px default width. Logseq's toggle,
   saved sidebar width and resizing remain available.
 - Refined Pages, flashcard and graph controls using their existing native UI.
@@ -36,7 +39,7 @@ entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
 The CDN caches branch URLs. To request a particular update, append a new version
-query to the URL, for example `custom.css?v=0.3.0-refined.1`, or use the commit
+query to the URL, for example `custom.css?v=0.3.0-refined.2`, or use the commit
 SHA in place of `refined` for a fixed version.
 
 ## Native Logseq behavior
@@ -61,7 +64,7 @@ The Refined section near the end of `custom.css` exposes:
 ```css
 --luma-refined-reading-width: 680px;
 --luma-refined-body-size: 14px;
---luma-refined-body-line-height: 1.76;
+--luma-refined-body-line-height: 1.5;
 --luma-refined-journal-space: 40px;
 ```
 
