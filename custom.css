@@ -1217,7 +1217,7 @@ html[data-theme] :is(.ui__dropdown-menu-content,
 :root {
   --luma-refined-reading-width: 680px;
   --luma-refined-body-size: 14px;
-  --luma-refined-body-line-height: 1.76;
+  --luma-refined-body-line-height: 1.5;
   --luma-refined-journal-space: 40px;
   --ls-main-content-max-width: calc(var(--luma-refined-reading-width) + 16px);
   --ls-left-sidebar-width: 184px;
@@ -1505,7 +1505,7 @@ body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
 :is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks {
   font-family: var(--sans-serif);
   font-size: var(--luma-refined-body-size, 14px);
-  line-height: var(--luma-refined-body-line-height, 1.76);
+  line-height: var(--luma-refined-body-line-height, 1.5);
 }
 :is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-wrapper > .editor-inner.block-editor > textarea.normal-block:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) {
   font-size: inherit;
@@ -1555,7 +1555,7 @@ body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
 :is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner:has(> textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *)) {
   font-family: var(--sans-serif);
   font-size: var(--luma-refined-body-size, 14px);
-  line-height: var(--luma-refined-body-line-height, 1.76);
+  line-height: var(--luma-refined-body-line-height, 1.5);
   transform: none;
 }
 :is(#main-content-container, #right-sidebar) .cp__page-inner-wrap:not(.is-node-page) > .page-inner > .ls-page-blocks .editor-inner > textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .ls-comments-area *, .ls-page-title *))::first-line,
@@ -1573,14 +1573,18 @@ body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
   border-top: 1px solid var(--ls-border-color);
   font-family: var(--sans-serif);
   font-size: 13px;
-  line-height: 1.65;
+  line-height: var(--luma-refined-body-line-height, 1.5);
 }
 #main-content-container .cp__page-inner-wrap:not(.is-node-page) > .flex :is(.references, .unlinked-references) .ls-view-head {
   color: var(--text-secondary);
   font-family: var(--sans-serif);
   font-size: 13px;
 }
-#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .flex :is(.references, .unlinked-references) .ls-view-body { margin-top: 10px; }
+#main-content-container .cp__page-inner-wrap:not(.is-node-page) > .flex :is(.references, .unlinked-references) .ls-view-body {
+  margin-top: 10px;
+  font-size: var(--luma-refined-body-size, 14px);
+  line-height: var(--luma-refined-body-line-height, 1.5);
+}
 /* The native resizer, scrolling, collapsed state and panel actions remain intact. */
 #right-sidebar .cp__right-sidebar-inner { background: var(--bg2); }
 #right-sidebar .sidebar-item {
@@ -1680,7 +1684,7 @@ body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
   padding: clamp(24px, 5vh, 48px) 12px 24px;
   font-family: var(--sans-serif, Inter, sans-serif);
   font-size: var(--luma-refined-body-size, 14px);
-  line-height: 1.75;
+  line-height: var(--luma-refined-body-line-height, 1.5);
 }
 
 /* Only the card's own title/editor leaves use the display face. This direct
@@ -1735,4 +1739,150 @@ body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
   background: var(--ls-primary-background-color);
   color: var(--ls-secondary-text-color);
   box-shadow: 0 2px 8px color-mix(in srgb, var(--ls-primary-text-color) 8%, transparent);
+}
+
+/* Hover previews use the native popup and scroll owner (block.cljs952–1031).
+ * The source page wrapper has inline width600/padding-bottom64 and page-inner
+ * adds another64px bottom margin. Reset only this preview copy of the page.
+ */
+.ls-preview-popup:is(.ui__popover-content, .ui__dropdown-menu-content) {
+  box-sizing: border-box;
+  width: min(600px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  max-height: min(72vh, calc(var(--available-height,
+    var(--radix-popover-content-available-height,
+    var(--radix-dropdown-menu-content-available-height, 100vh))) - 16px));
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+}
+
+.ls-preview-popup .tippy-wrapper.as-page {
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+  margin-left: 0;
+  padding: 0 !important;
+}
+
+.ls-preview-popup .cp__page-inner-wrap {
+  min-width: 0;
+  min-height: 0;
+}
+
+.ls-preview-popup .cp__page-inner-wrap > .page-inner {
+  min-width: 0;
+  margin-bottom: 0;
+  gap: 16px;
+}
+
+.ls-preview-popup .cp__page-inner-wrap > .page-inner > .ls-page-blocks {
+  margin-top: 0;
+  margin-left: 0 !important;
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: var(--luma-refined-body-size, 14px);
+  font-weight: 400;
+  line-height: var(--luma-refined-body-line-height, 1.5);
+}
+
+.ls-preview-popup .ls-page-title {
+  padding-top: 24px;
+}
+
+.ls-preview-popup .ls-page-title-container {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: var(--luma-refined-body-size, 14px);
+  line-height: var(--luma-refined-body-line-height, 1.5);
+}
+
+.ls-preview-popup .ls-page-title .ls-block-right {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.ls-preview-popup .ls-page-title .block-tags {
+  margin-top: 4px;
+  min-height: 0;
+}
+
+.ls-preview-popup .cp__page-inner-wrap > .page-inner > .flex > .ls-page-title
+  .ls-page-title-container > .block-content-or-editor-inner > .block-row
+  > .block-content-wrapper > .block-content > .block-content-inner > .block-head-wrap {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.ls-preview-popup .cp__page-inner-wrap > .page-inner > .flex > .ls-page-title
+  .ls-page-title-container > .block-content-or-editor-inner > .block-row
+  > .block-content-wrapper > .block-content > .block-content-inner > .block-head-wrap .block-title-wrap,
+.ls-preview-popup .cp__page-inner-wrap > .page-inner > .flex > .ls-page-title
+  .ls-page-title-container > .block-content-or-editor-inner > .block-row
+  > .editor-wrapper > .editor-inner > :is(textarea, .mock-text) {
+  font-family: "Luma Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.ls-preview-popup .ls-page-title-container > .block-content-or-editor-inner > .block-row
+  > .block-content-wrapper {
+  position: relative;
+}
+
+.ls-preview-popup .ls-page-title-container .block-content-wrapper > .ls-page-title-actions {
+  top: auto;
+  bottom: calc(100% + 6px);
+  left: 0;
+  width: max-content;
+}
+
+.ls-preview-popup .ls-page-title-actions::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 6px;
+}
+
+/* Permit the native code editor to shrink inside the preview's flex/grid
+ * chain. CodeMirror keeps its own white-space:pre and horizontal scrollbar.
+ * No line wrapping, hidden code, or global source-panel changes are needed.
+ */
+.ls-preview-popup :is(.ls-page-blocks, .page-blocks-inner, .blocks-container,
+  .blocks-list-wrap, .ls-block, .block-main-container,
+  .block-content-or-editor-wrap, .block-content-or-editor-inner, .block-row,
+  .block-content-wrapper, .block-content, .block-content-inner, .block-head-wrap,
+  .extensions__code, .code-editor, .CodeMirror) {
+  min-width: 0;
+}
+
+.ls-preview-popup .CodeMirror {
+  max-width: 100%;
+}
+
+.ls-preview-popup :is(.block-title-wrap, .breadcrumb a) {
+  overflow-wrap: anywhere;
+}
+
+/* Reference lists nest native foldables. Keep their collapse clipping, but
+   move the fold controls and desktop list groups inside that clipping box. */
+:is(.references, .unlinked-references) .ls-foldable-title-control {
+  margin-left: 0;
+}
+:is(.references, .unlinked-references) .ls-foldable-content-inner > .-ml-2 {
+  margin-left: 0;
+}
+/* The native top-level reference chevron is hidden until hover. Keep that
+   existing control visible; reference view tabs intentionally have no icon. */
+:is(.references, .unlinked-references) .ls-foldable-header:has(> .ls-view-head)
+  > .ls-foldable-title-control > .control-hide {
+  display: inline-flex;
 }
