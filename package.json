@@ -1,7 +1,7 @@
 {
   "name": "Luma Refined",
   "author": "@gavmn",
-  "version": "0.3.0-refined.1",
+  "version": "0.3.0-refined.2",
   "description": "A calm, readable light and dark Luma variant for Logseq DB",
   "logseq": {
     "themes": [
