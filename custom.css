@@ -1880,9 +1880,20 @@ body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
 :is(.references, .unlinked-references) .ls-foldable-content-inner > .-ml-2 {
   margin-left: 0;
 }
-/* The native top-level reference chevron is hidden until hover. Keep that
-   existing control visible; reference view tabs intentionally have no icon. */
+/* Keep the existing section toggle visible independently of the label icon. */
 :is(.references, .unlinked-references) .ls-foldable-header:has(> .ls-view-head)
   > .ls-foldable-title-control > .control-hide {
   display: inline-flex;
+}
+/* DB 2.0.2 omits the reference tab icon. Put a chain beside the linked-reference
+   label only; the empty mask keeps it decorative and works without a font fetch. */
+.references .ls-view-head:not(:where(.ls-view-body *)) .views > button[data-view-tab-id]::before {
+  content: "";
+  display: inline-block;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71'/%3E%3C/svg%3E") center / contain no-repeat;
 }
