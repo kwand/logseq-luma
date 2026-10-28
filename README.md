@@ -13,8 +13,8 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
 - Quiet properties, simple linked-reference dividers and a lightly tinted
   right sidebar.
 - Compact hover previews with readable text and scrollable wide code blocks.
-- Linked references retain their native section chevron and keep text and
-  controls inside the section's clipping boundary.
+- Linked references show a chain icon beside their label, retain their native
+  section chevron, and keep text and controls inside the clipping boundary.
 - A familiar full left sidebar with a 184px default width. Logseq's toggle,
   saved sidebar width and resizing remain available.
 - Refined Pages, flashcard and graph controls using their existing native UI.
@@ -39,7 +39,7 @@ entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
 The CDN caches branch URLs. To request a particular update, append a new version
-query to the URL, for example `custom.css?v=0.3.0-refined.2`, or use the commit
+query to the URL, for example `custom.css?v=0.3.0-refined.3`, or use the commit
 SHA in place of `refined` for a fixed version.
 
 ## Native Logseq behavior
