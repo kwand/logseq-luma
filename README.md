@@ -37,7 +37,7 @@ This branch is a separate variant, not a marketplace release. For Logseq DB,
 replace the contents of the custom CSS editor in Settings with:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@refined/custom.css");
+@import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@8c947289cac46bc19d594421ee214fd8d6810554/custom.css");
 ```
 
 Reload Logseq after changing the import.
@@ -46,9 +46,10 @@ For file graphs, put the same line in `logseq/custom.css`. You can also copy the
 entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
-The CDN caches branch URLs. To request a particular update, append a new version
-query to the URL, for example `custom.css?v=0.3.0-refined.6`, or use the commit
-SHA in place of `refined` for a fixed version.
+This import pins version `0.3.0-refined.6` to its stylesheet commit so the CDN
+serves that exact update. To follow the branch, replace the commit SHA with
+`refined`; branch URLs can serve older CSS even with a new query string.
+For a newer fixed version, use its stylesheet commit SHA.
 
 ## Native Logseq behavior
 
