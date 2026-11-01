@@ -27,8 +27,8 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
 
 Title typography applies only to title text, its editor and its caret mirror.
 Add icon, Set property, tags, menus and other interface controls retain Inter.
-The title actions appear above the title, with space reserved inside each
-journal row. Ordinary block editors use the same size and line height as their
+The title actions appear above the title, with labels aligned to its left edge.
+Space is reserved inside each journal row. Ordinary block editors use the same size and line height as their
 rendered text.
 
 ## Installation
@@ -47,7 +47,7 @@ entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
 The CDN caches branch URLs. To request a particular update, append a new version
-query to the URL, for example `custom.css?v=0.3.0-refined.5`, or use the commit
+query to the URL, for example `custom.css?v=0.3.0-refined.6`, or use the commit
 SHA in place of `refined` for a fixed version.
 
 ## Native Logseq behavior
