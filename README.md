@@ -10,6 +10,7 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
 - A comfortable 680px reading width, 14px body text and the original 1.5 line spacing.
 - Embedded Newsreader titles: 34px for notes and 26px for journal dates, both in
   the feed and on standalone journal pages. Long titles wrap when necessary.
+- Journal notes sit 8px closer to their date titles for a slightly tighter gap.
 - Quiet properties, simple linked-reference dividers and a lightly tinted
   right sidebar.
 - Compact hover previews with readable text and scrollable wide code blocks.
@@ -17,6 +18,7 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
   separate row above the code. The row appears on hover or keyboard focus.
   Scrollbars reveal on direct hover without changing the editor's size;
   controls and scrollbars remain visible on touch screens.
+  Editor widths are capped at their containing column, including nested DB code.
 - Linked references show a chain icon beside their label, retain their native
   section chevron, and keep text and controls inside the clipping boundary.
 - A familiar full left sidebar with a 184px default width. Logseq's toggle,
@@ -45,7 +47,7 @@ entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
 The CDN caches branch URLs. To request a particular update, append a new version
-query to the URL, for example `custom.css?v=0.3.0-refined.4`, or use the commit
+query to the URL, for example `custom.css?v=0.3.0-refined.5`, or use the commit
 SHA in place of `refined` for a fixed version.
 
 ## Native Logseq behavior
