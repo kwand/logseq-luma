@@ -2004,6 +2004,14 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 
 /* Luma Refined: code text, a separate action row, and quiet scrollbar tracks.
    Keep CodeMirror's native scrolling/sizer geometry and calc behavior intact. */
+/* Long preformatted lines must scroll within the editor, rather than making
+   an earlier flex/grid item expand and clipping the toolbar out of view. */
+:is(.ls-page-blocks, .page-blocks-inner, .blocks-container, .blocks-list-wrap,
+  .ls-block, .block-main-container, .block-content-or-editor-wrap,
+  .block-content-or-editor-inner, .block-row, .block-content-wrapper,
+  .block-content, .block-content-inner, .block-head-wrap):has(.ui-fenced-code-editor) {
+  min-width: 0;
+}
 .ui-fenced-code-editor,
 .ls-code-editor-wrap,
 .ls-code-editor-wrap :is(.extensions__code, .code-editor, .CodeMirror) {
@@ -2033,7 +2041,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
   border-radius: 6px;
   background: var(--bg1);
   font-family: var(--sans-serif);
-  opacity: 0 !important;
   pointer-events: none;
 }
 .ls-code-editor-wrap > .code-block-actions button {
@@ -2049,8 +2056,24 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 }
 .ls-code-editor-wrap:is(:hover, :focus-within) > .code-block-actions,
 .ls-code-editor-wrap > .code-block-actions:has([data-popup-active], [data-state="open"], [aria-expanded="true"]) {
-  opacity: 1 !important;
   pointer-events: auto;
+}
+/* Logseq adds !opacity-100 on mouseover. Important declarations in its
+   Tailwind utilities layer outrank unlayered CSS, so reset/reveal in that
+   same layer with the scoped selector, including after its class sticks. */
+@layer utilities {
+  .ls-code-editor-wrap > .code-block-actions {
+    opacity: 0 !important;
+  }
+  .ls-code-editor-wrap:is(:hover, :focus-within) > .code-block-actions,
+  .ls-code-editor-wrap > .code-block-actions:has([data-popup-active], [data-state="open"], [aria-expanded="true"]) {
+    opacity: 1 !important;
+  }
+  @media (hover: none), (pointer: coarse) {
+    .ls-code-editor-wrap > .code-block-actions {
+      opacity: 1 !important;
+    }
+  }
 }
 /* Opacity keeps each scrollbar's hit area and measured dimensions in place.
    Hover the track itself to reveal it; hovering code leaves it quiet. */
@@ -2066,7 +2089,6 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 }
 @media (hover: none), (pointer: coarse) {
   .ls-code-editor-wrap > .code-block-actions {
-    opacity: 1 !important;
     pointer-events: auto;
   }
   .ls-code-editor-wrap .CodeMirror :is(.CodeMirror-hscrollbar, .CodeMirror-vscrollbar) {
