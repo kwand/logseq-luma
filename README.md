@@ -13,6 +13,10 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
 - Quiet properties, simple linked-reference dividers and a lightly tinted
   right sidebar.
 - Compact hover previews with readable text and scrollable wide code blocks.
+- Embedded Fira Code for code blocks, with language and Copy controls in a
+  separate row above the code. The row appears on hover or keyboard focus.
+  Scrollbars reveal on direct hover without changing the editor's size;
+  controls and scrollbars remain visible on touch screens.
 - Linked references show a chain icon beside their label, retain their native
   section chevron, and keep text and controls inside the clipping boundary.
 - A familiar full left sidebar with a 184px default width. Logseq's toggle,
@@ -34,12 +38,14 @@ replace the contents of the custom CSS editor in Settings with:
 @import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@refined/custom.css");
 ```
 
+Reload Logseq after changing the import.
+
 For file graphs, put the same line in `logseq/custom.css`. You can also copy the
 entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
 The CDN caches branch URLs. To request a particular update, append a new version
-query to the URL, for example `custom.css?v=0.3.0-refined.3`, or use the commit
+query to the URL, for example `custom.css?v=0.3.0-refined.4`, or use the commit
 SHA in place of `refined` for a fixed version.
 
 ## Native Logseq behavior
@@ -68,9 +74,10 @@ The Refined section near the end of `custom.css` exposes:
 --luma-refined-journal-space: 40px;
 ```
 
-Newsreader's Latin webfont is embedded, with its copyright notice and SIL Open
-Font License 1.1 in the stylesheet. It works without a font download. Inter uses
-the existing import and falls back to the system sans-serif font.
+Newsreader's Latin webfont and Fira Code 6.2 Regular are embedded, with their
+copyright notices and SIL Open Font License 1.1 in the stylesheet. They work
+without a separate font download. Inter uses the existing import and falls
+back to the system sans-serif font.
 
 ## Compatibility checks
 
