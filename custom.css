@@ -1427,6 +1427,11 @@ body { font-size: var(--luma-refined-body-size); letter-spacing: 0; }
   --luma-refined-title-size: var(--luma-refined-journal-title-size);
   --luma-refined-title-leading: 1.38;
 }
+/* Bring journal notes 8px closer to the date without changing the grid,
+   divider spacing, or contexts where Logseq omits its native mt-4 margin. */
+#main-content-container .cp__page-inner-wrap.is-journals > .page-inner > .ls-page-blocks.mt-4 {
+  margin-top: 8px;
+}
 /* Standalone regular/journal pages reserve room for the above-title toolbar.
    Feed rows receive their 40px padding from refined-shell.css. */
 #main-content-container > .cp__sidebar-main-content > .cp__page-inner-wrap:not(.is-node-page):has(> .page-inner > .flex > .ls-page-title) {
@@ -2016,6 +2021,20 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 .ls-code-editor-wrap,
 .ls-code-editor-wrap :is(.extensions__code, .code-editor, .CodeMirror) {
   min-width: 0;
+  max-width: 100%;
+}
+/* DB code nodes have an extra flex item between the title wrapper and the
+   editor (block.cljs block-title). Its automatic minimum can push the entire
+   editor and Copy control beyond the page's clipping boundary. */
+.block-head-wrap > .flex:has(> .ui-fenced-code-editor) {
+  min-width: 0;
+  max-width: 100%;
+}
+/* The outliner adds full-width flex columns beside the 24px block control.
+   Let those columns shrink into the remaining width, including after resize. */
+.ls-block :is(.block-main-content, .flex.flex-col.w-full):has(.ui-fenced-code-editor) {
+  min-width: 0;
+  max-width: 100%;
 }
 .ls-code-editor-wrap {
   display: flex;
