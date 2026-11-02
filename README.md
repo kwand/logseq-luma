@@ -23,7 +23,9 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
   section chevron, and keep text and controls inside the clipping boundary.
 - A familiar full left sidebar with a 184px default width. Logseq's toggle,
   saved sidebar width and resizing remain available.
-- Refined Pages, flashcard and graph controls using their existing native UI.
+- A compact flashcards dialog with a soft deck toolbar, Newsreader headings,
+  and review controls that stay visible while longer answers scroll.
+- Refined Pages and graph controls using their existing native UI.
 
 Title typography applies only to title text, its editor and its caret mirror.
 Add icon, Set property, tags, menus and other interface controls retain Inter.
@@ -37,7 +39,7 @@ This branch is a separate variant, not a marketplace release. For Logseq DB,
 replace the contents of the custom CSS editor in Settings with:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@8c947289cac46bc19d594421ee214fd8d6810554/custom.css");
+@import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@9114a5b481ccc3f5959292825da70740f12dc4f4/custom.css");
 ```
 
 Reload Logseq after changing the import.
@@ -46,7 +48,7 @@ For file graphs, put the same line in `logseq/custom.css`. You can also copy the
 entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
-This import pins version `0.3.0-refined.6` to its stylesheet commit so the CDN
+This import pins version `0.3.0-refined.7` to its stylesheet commit so the CDN
 serves that exact update. To follow the branch, replace the commit SHA with
 `refined`; branch URLs can serve older CSS even with a new query string.
 For a newer fixed version, use its stylesheet commit SHA.
@@ -61,6 +63,8 @@ features. Native structure determines a few details:
   surrounding spacing carry the Calm style.
 - Flashcards open in Logseq's review dialog. Questions use Newsreader; answers
   and review buttons retain their normal interface typography and behavior.
+  Empty and caught-up states size to their content. Decks, clozes, rating colors,
+  due dates, shortcuts and the close control remain native.
 - Graph rendering and node positions remain native. The theme styles the graph
   background and existing controls, rather than replacing its canvas renderer.
 - Journal rows retain inline heights cached by Logseq's virtualizer. Empty days
