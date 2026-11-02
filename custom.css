@@ -2120,3 +2120,318 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     transition: none;
   }
 }
+
+/* Luma Refined: flashcards — a compact, focused native review dialog.
+   fsrs.cljs cards-view/card-view and Shui DialogContent provide every control.
+   Scope the desktop dialog so the separate native mobile review stays native. */
+.ui__dialog-content[label="flashcards__cp"] {
+  width: min(760px, calc(100vw - 40px));
+  min-width: 0;
+  max-width: calc(100vw - 40px);
+  height: auto;
+  max-height: calc(100dvh - 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--ls-border-color);
+  border-radius: 14px;
+  background: var(--bg1);
+  color: var(--text-primary);
+  box-shadow: 0 24px 72px color-mix(in srgb, var(--text-primary) 14%, transparent);
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ui__dialog-content[label="flashcards__cp"]:has(.ls-card-scroll) {
+  height: min(620px, calc(100dvh - 48px));
+}
+.ui__dialog-content[label="flashcards__cp"] > .ui__dialog-main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  max-height: none;
+  padding: 0;
+  overflow: hidden;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  gap: 0;
+  margin: 0;
+}
+/* Keep the deck selector, native Add query button, and progress together.
+   The right inset reserves a comfortable target for the portal's Close. */
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex:has(> #ls-cards-add) {
+  flex-shrink: 0;
+  min-width: 0;
+  gap: 8px;
+  padding: 16px 64px 16px 24px;
+  border-bottom: 1px solid var(--ls-border-color);
+  background: var(--luma-refined-soft);
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger {
+  flex: 1 1 16rem;
+  width: 100%;
+  min-width: 0;
+  max-width: 320px;
+  min-height: 36px;
+  border-color: var(--ls-border-color);
+  border-radius: 8px;
+  background: var(--bg1);
+  color: var(--text-primary);
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+}
+.ui__dialog-content[label="flashcards__cp"] #ls-cards-add {
+  flex: 0 0 36px;
+  width: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border: 1px solid var(--ls-border-color);
+  border-radius: 8px;
+  background: var(--bg1);
+  color: var(--luma-refined-accent);
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex:has(> #ls-cards-add) > span:last-child {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 4px 8px;
+  border: 1px solid var(--ls-border-color);
+  border-radius: 6px;
+  background: var(--bg1);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  opacity: 1;
+}
+.ui__dialog-content[label="flashcards__cp"] > .ui__dialog-close {
+  top: 18px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  opacity: 1;
+}
+.ui__dialog-content[label="flashcards__cp"] :is(#ls-cards-add, .ui__dialog-close):hover {
+  background: var(--luma-refined-selected);
+  color: var(--text-primary);
+}
+/* Empty, no-due and finished states are direct cards, without a review scroller. */
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card {
+  min-width: 0;
+  min-height: 0;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 1 auto;
+  gap: 16px;
+  margin: 0;
+  padding: 44px 32px 48px;
+  overflow-y: auto;
+  text-align: center;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card::before {
+  content: "";
+  display: block;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 4px;
+  background: var(--luma-refined-accent);
+  opacity: 0.8;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='8' y='9' width='18' height='17' rx='3'/%3E%3Cpath d='M21 9V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h1m5-7h8m-8 5h5'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card:has(#card-practice-again)::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='16' r='11'/%3E%3Cpath d='m11 16 3.5 3.5L22 12'/%3E%3C/svg%3E");
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card > h2,
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card > p:first-child {
+  max-width: 440px;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: "Luma Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 30px;
+  font-weight: 400 !important;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card > div {
+  max-width: 440px;
+  margin: 0;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.ui__dialog-content[label="flashcards__cp"] #card-practice-again {
+  min-height: 36px;
+  margin-top: 8px;
+  border-radius: 8px;
+}
+/* Use the native review scroller above a separate, always-reachable footer. */
+.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex:has(> .ls-card) {
+  min-width: 0;
+  min-height: 0;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card:has(> .ls-card-scroll) {
+  flex: 1 1 auto;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll {
+  min-width: 0;
+  padding: 28px 32px 32px;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .mb-4 {
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ls-border-color);
+  color: var(--text-secondary);
+  font-size: 12px;
+  opacity: 1;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container {
+  min-width: 0;
+  padding: 0;
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container
+  > .blocks-list-wrap > .ls-block > .block-main-container .block-head-wrap
+  .block-title-wrap:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .block-body *)),
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container
+  > .blocks-list-wrap > .ls-block > .block-main-container
+  .editor-wrapper:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .block-body *))
+  > .editor-inner > :is(textarea, .mock-text) {
+  font-family: "Luma Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0 {
+  margin-top: 0;
+  padding: 16px 24px;
+  border-top: 1px solid var(--ls-border-color);
+  background: var(--luma-refined-soft);
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0 > .flex {
+  justify-content: center;
+}
+.ui__dialog-content[label="flashcards__cp"] #card-answers {
+  min-height: 40px;
+  border-color: transparent;
+  border-radius: 8px;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  opacity: 1;
+}
+.ui__dialog-content[label="flashcards__cp"] #card-answers:hover {
+  background: hsl(var(--primary) / 0.88);
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0
+  .flex:has(> .flex > #card-again) {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+  align-items: start;
+  gap: 12px;
+  width: 100%;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0
+  .flex:has(> .flex > #card-again) > button:last-child {
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: 6px;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0
+  .flex > .flex:has(> :is(#card-again, #card-hard, #card-good, #card-easy)) {
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 0;
+  gap: 6px;
+  text-align: center;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal :is(#card-again, #card-hard, #card-good, #card-easy) {
+  width: 100%;
+  min-height: 36px;
+  border-radius: 8px;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0
+  .flex > .flex:has(> :is(#card-again, #card-hard, #card-good, #card-easy)) > div {
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: 1;
+}
+@media (max-width: 560px) {
+  .ui__dialog-content[label="flashcards__cp"] {
+    width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
+    max-height: calc(100dvh - 24px);
+    border-radius: 12px;
+  }
+  .ui__dialog-content[label="flashcards__cp"]:has(.ls-card-scroll) {
+    height: min(620px, calc(100dvh - 24px));
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex:has(> #ls-cards-add) {
+    padding: 12px 52px 12px 16px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] > .ui__dialog-close {
+    top: 14px;
+    right: 12px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card {
+    padding: 32px 20px 36px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card > h2,
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal > .ls-card > p:first-child {
+    font-size: 26px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll {
+    padding: 20px 20px 24px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0 {
+    padding: 14px 16px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0
+    .flex:has(> .flex > #card-again) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0
+    .flex:has(> .flex > #card-again) > button:last-child {
+    grid-column: 1 / -1;
+    justify-self: end;
+  }
+}
+@media (pointer: coarse) {
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal
+    :is(.ui__select-trigger, #ls-cards-add, #card-answers, #card-practice-again,
+      #card-again, #card-hard, #card-good, #card-easy) {
+    min-height: 44px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] > .ui__dialog-close {
+    width: 40px;
+    height: 40px;
+  }
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card > .shrink-0
+    .flex:has(> .flex > #card-again) > button:last-child {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
