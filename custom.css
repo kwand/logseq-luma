@@ -2435,3 +2435,190 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
     min-height: 44px;
   }
 }
+
+/* The native Select portal is a body sibling, not a dialog descendant.
+   Match the border widths and the label insets; Base UI can then align its
+   selected text without shifting the popup to the left. Keep its native
+   vertical placement, viewport collision handling and long-list scrolling. */
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div:has(> .ui__select-content) {
+    width: var(--anchor-width) !important;
+  }
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div > .ui__select-content {
+    width: 100%;
+    min-width: 0;
+    border-color: var(--ls-border-color);
+    border-radius: 8px;
+    background: var(--bg1);
+    color: var(--text-primary);
+    font-family: var(--sans-serif, Inter, sans-serif);
+    font-size: 14px;
+    box-shadow: 0 8px 24px color-mix(in srgb, var(--text-primary) 12%, transparent);
+  }
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div > .ui__select-content > :first-child {
+    padding: 4px 0;
+  }
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div > .ui__select-content .ui__select-item {
+    position: relative;
+    padding-right: 32px;
+    color: var(--text-primary);
+    font-family: var(--sans-serif, Inter, sans-serif);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div > .ui__select-content .ui__select-item > span:first-child {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div > .ui__select-content .ui__select-item > :last-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div > .ui__select-content .ui__select-item[data-highlighted] {
+    background: var(--luma-refined-selected);
+  }
+@media (pointer: coarse) {
+body:has(.ui__dialog-content[label="flashcards__cp"] #cards-modal > .flex > .ui__select-trigger[aria-expanded="true"])
+  [data-base-ui-portal] > div > .ui__select-content .ui__select-item {
+    min-height: 44px;
+  }
+}
+
+/* Luma Refined: keep outline headings consistent in references, previews and
+   card answers. Match the 24/19/16/14/13/12px body hierarchy already used in
+   main/right pages; keep properties, page titles and comments independent. */
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .ls-block h1:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.h1:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.h1) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  --luma-refined-heading-size: 24px;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .ls-block h2:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.h2:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.h2) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  --luma-refined-heading-size: 19px;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .ls-block h3:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.h3:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.h3) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  --luma-refined-heading-size: 16px;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .ls-block h4:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.h4:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.h4) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  --luma-refined-heading-size: 14px;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .ls-block h5:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.h5:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.h5) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  --luma-refined-heading-size: 13px;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .ls-block h6:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.h6:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.h6) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  --luma-refined-heading-size: 12px;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .ls-block :is(h1,h2,h3,h4,h5,h6):not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.uniline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.uniline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: var(--luma-refined-heading-size) !important;
+  font-weight: 600 !important;
+  line-height: 1.4;
+  margin-block: 0;
+  padding-block: 0;
+  min-height: max(1.4em, 24px) !important;
+  border-bottom: 0;
+  transform: none !important;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: var(--luma-refined-body-size, 14px);
+  line-height: var(--luma-refined-body-line-height, 1.5);
+  transform: none !important;
+}
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *))::first-line,
+:where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner:has(> textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *))::first-line {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: var(--luma-refined-heading-size) !important;
+  font-weight: 600 !important;
+  line-height: 1.4;
+  transform: none !important;
+}
+/* A heading can itself be the card question. Give its read leaf, editor and
+   caret mirror the same display type; legacy h2/h3 !important rules must not
+   shrink the question or make its editor jump. Child answers stay body text. */
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-main-container .block-head-wrap .block-title-wrap:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-main-container .editor-wrapper > .editor-inner > :is(textarea, .mock-text):not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  font-family: "Luma Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 30px !important;
+  font-weight: 400 !important;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+  margin-block: 0;
+  padding-block: 0;
+  min-height: 1.3em;
+  border-bottom: 0;
+  transform: none !important;
+}
+/* A multiline heading editor retains ordinary paragraph metrics after its
+   first line, exactly like the rendered heading plus its block body. */
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-main-container .editor-wrapper > .editor-inner > textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-main-container .editor-wrapper > .editor-inner:has(> textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+  font-family: var(--sans-serif, Inter, sans-serif);
+  font-size: var(--luma-refined-body-size, 14px) !important;
+  line-height: var(--luma-refined-body-line-height, 1.5);
+  letter-spacing: 0;
+}
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-main-container .editor-wrapper > .editor-inner > textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6):not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *))::first-line,
+.ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-main-container .editor-wrapper > .editor-inner:has(> textarea.multiline-block:is(.h1,.h2,.h3,.h4,.h5,.h6)) > .mock-text:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *))::first-line {
+  font-family: "Luma Newsreader", "Iowan Old Style", "Palatino Linotype", serif;
+  font-size: 30px !important;
+  font-weight: 400 !important;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+@supports (field-sizing: content) {
+  :where(.ls-preview-popup .ls-page-blocks, .references .ls-view-body, .unlinked-references .ls-view-body, .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-children-container) .editor-inner > textarea.uniline-block.h5:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)),
+  .ui__dialog-content[label="flashcards__cp"] #cards-modal .ls-card-scroll > .blocks-container > .blocks-list-wrap > .ls-block > .block-main-container .editor-wrapper > .editor-inner > textarea.uniline-block.h5:not(:where(.ls-properties-area *, .positioned-properties *, .ls-block-right *, .ls-comments-area *, .ls-page-title *, .block-body *)) {
+    height: auto !important;
+  }
+}
+
+/* Selected Pages rows use the same strong label color as active navigation.
+   The normal accent link falls below 4.5:1 against the light selection tint. */
+.ls-all-pages .ls-table-row:is(.selected, [data-state="selected"], :has(.ui__checkbox[data-checked]))
+  .ls-table-cell a.page-ref {
+  color: var(--text-primary);
+}
+
+/* Luma Refined: keep graph controls inside their actual canvas pane.
+   Viewport-based native panel widths also need to share the graph with the
+   sidebars, Settings and optional Reset. Inline containment leaves the
+   native graph's explicit width/height and canvas rendering intact. */
+#global-graph {
+  container-type: inline-size;
+}
+#global-graph .graph-bottom-toolbar {
+  max-width: calc(100% - 36px);
+}
+#global-graph .graph-settings-panel {
+  max-width: calc(100cqw - 36px);
+}
+@media (max-width: 900px) {
+  #global-graph .graph-bottom-toolbar {
+    max-width: calc(100% - 24px);
+  }
+  #global-graph .graph-settings-panel {
+    max-width: calc(100cqw - 24px);
+  }
+}
