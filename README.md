@@ -25,13 +25,19 @@ The original Luma remains on `main`; the earlier Focus experiment remains on
   saved sidebar width and resizing remain available.
 - A compact flashcards dialog with a soft deck toolbar, Newsreader headings,
   and review controls that stay visible while longer answers scroll.
+  The deck menu matches its field's left edge and width, with checkmarks in a
+  right gutter and native selection, scrolling and keyboard behavior.
 - Refined Pages and graph controls using their existing native UI.
+  Selected page names use the stronger text color; graph controls fit narrow panes.
 
 Title typography applies only to title text, its editor and its caret mirror.
 Add icon, Set property, tags, menus and other interface controls retain Inter.
 The title actions appear above the title, with labels aligned to its left edge.
 Space is reserved inside each journal row. Ordinary block editors use the same size and line height as their
 rendered text.
+Outline headings share the same size, weight and editor metrics in notes,
+sidebars, hover previews, linked references and flashcard answers. Card questions
+keep their display typography when the question itself is a heading.
 
 ## Installation
 
@@ -39,7 +45,7 @@ This branch is a separate variant, not a marketplace release. For Logseq DB,
 replace the contents of the custom CSS editor in Settings with:
 
 ```css
-@import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@9114a5b481ccc3f5959292825da70740f12dc4f4/custom.css");
+@import url("https://cdn.jsdelivr.net/gh/kwand/logseq-luma@4881cd41a7a8ca71019e91699bab6c6986c128e9/custom.css");
 ```
 
 Reload Logseq after changing the import.
@@ -48,7 +54,7 @@ For file graphs, put the same line in `logseq/custom.css`. You can also copy the
 entire stylesheet. Remove previous theme imports and temporary CSS overrides
 when switching, so they do not override Refined.
 
-This import pins version `0.3.0-refined.7` to its stylesheet commit so the CDN
+This import pins version `0.3.0-refined.8` to its stylesheet commit so the CDN
 serves that exact update. To follow the branch, replace the commit SHA with
 `refined`; branch URLs can serve older CSS even with a new query string.
 For a newer fixed version, use its stylesheet commit SHA.
@@ -94,6 +100,11 @@ DOM and the installed application's compiled CSS in light and dark mode, on
 desktop, narrow panes and touch-sized screens. They cover title/editor/caret
 metrics, above-title actions, journal spacing, cached virtual row heights,
 sidebar sizing, Pages row geometry, properties and flashcards.
+The consistency review also checks six heading levels and their editors/mirrors
+across those contexts, selected-row contrast, code scrolling and graph controls.
+Deck-menu checks mount Logseq's locked Base UI 1.6.0 Select with React 19.2.6,
+including real portalled positioning, mouse/touch/keyboard selection, long deck
+lists and resizing. Other layout checks use source-derived native markup.
 
 These isolated checks do not run Logseq's application logic. Search, property
 editing, review scheduling and graph interaction still use Logseq's native
